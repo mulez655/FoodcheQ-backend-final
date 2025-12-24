@@ -1,4 +1,5 @@
 import express from "express";
+import path from "path";
 import cors from "cors";
 import morgan from "morgan";
 import { env } from "./config/env";
@@ -59,6 +60,11 @@ app.post(
 // ======================================================
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(
+  "/api/uploads",
+  express.static(path.join(process.cwd(), "uploads"))
+);
 
 // ======================================================
 // 🔵 PUBLIC USER ROUTES
